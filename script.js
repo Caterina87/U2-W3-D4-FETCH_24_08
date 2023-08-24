@@ -1,15 +1,23 @@
+// Funzione collegata al primo bottone
 function loadImages() {
   displayPhotos("people");
 }
-
+// Funzione collegata al secondo bottone
 function loadImagesSecondary() {
   displayPhotos("ocean");
 }
-
+// Funzione  collegata al bottone Hide per scartare le card
 const skipMe = (event) => {
   event.target.closest(".col-md-4").remove();
 };
-// Metodo che chiama l'api rest delle foto passando il parametro con il tipo delle foto
+// Funzione  collegata al bottone di ricerca
+function searchBtn() {
+  displayPhotos(document.getElementById("searchInput").value);
+}
+
+// Questo è il metodo che chiama l'api rest delle foto passando il parametro
+// con il tipo delle foto quindi può essere riutilizzato per i bottoni e per la ricerca
+
 function displayPhotos(typePhoto) {
   const url = "https://api.pexels.com/v1/search?query=" + typePhoto;
   fetch(url, {
@@ -49,9 +57,4 @@ function displayPhotos(typePhoto) {
       });
     })
     .catch((error) => console.log(error));
-}
-
-function searchBtn() {
-  searchInput.value();
-  displayPhotos("ocean");
 }
